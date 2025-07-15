@@ -1,251 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: rgb(32, 32, 32);
-            color: #333;
-            margin: 0;
-        }
-        #script-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-            gap: 15px;
-            padding: 20px;
-            margin-top: 5px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(20, 20, 20);
+        color: #333;
+        margin: 0;
+      }
+      #script-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
+        padding: 20px;
+        margin-top: 5px;
+      }
 
-        @media (max-width: 686px) and (max-height: 358px) and (min-width: 680px) and (min-height: 350px) { 
-            .card  {
-                height: 382px;
-            }
-        }
-        @media (max-width: 600px) {
-            #script-container {
-                grid-template-columns: 1fr;
-                padding: 10px;
-            }
-            .search-bar {
-                width: 90%;
-                top: 5px;
-            }
-            
-            .tab-buttons {
-                top: 35px;
-                left: 5px;
-            }
-            
-            .tab-button {
-                padding: 8px 12px; 
-                font-size: 14px;
-            }
-        }
-        @media (min-width: 601px) and (max-width: 900px) {
-             #script-container {
-                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-             }
-         }
-        @media (min-width: 1200px) {
-            #script-container {
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-            }
-        }
+      @media (max-width: 686px) and (max-height: 358px) and (min-width: 680px) and (min-height: 350px) {
         .card {
-            background-color: #313131;
-            border: 1px solid #444;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(182, 182, 182, 0.1);
-            position: relative;
-            overflow: hidden;
-            padding-bottom: 15px;
-            transition: all 0.3s ease;
-
+          height: 382px;
         }
-        .card:hover {
-            box-shadow: 0 4px 10px rgba(182, 182, 182, 0.2);
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
-        }
-        .copybtn {
-            background-color: #4569a0;
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-        }
-
-        .title-and-gamename {
-            display: flex;
-            justify-content: center;
-            color: #fff;
-        }
-        .visible {
-            transform: translateY(0);
-            opacity: 1;
-            transition: all 1s ease;
-            filter: blur(0);
-        }
-        .nonvisible {
-            transform: translateY(50px);
-            opacity: 0;
-            transition: all 1s ease;
-            filter: blur(1px);
-        }
-        .visible2 {
-            transform: translateX(10px);
-            opacity: 1;
-            transition: all 1.5s ease;
-            filter: blur(0);
-        }
-        .nonvisible2 {
-            transform: translateX(0px);
-            opacity: 0;
-            transition: all 1.5s ease;
-            filter: blur(1px);
-        }
-        .title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-            width: 100%;
-            text-align: center;
-            margin: 1px;
-            text-wrap: nowrap;
-        }
-        .game-name {
-            font-size: 16px;
-            color: #cccccc;
-            width: 100%;
-            text-align: center;
-            margin: 1px;
-            text-wrap: nowrap;
-        }
-        .game-image {
-            width: 100%;
-            height: 60%;
-            overflow: hidden;
-            position: relative;
-            border-radius: 0px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #9999995e;
-        }
-        .game-image img {
-            width: 100%;
-            height: 100%;
-            border-radius: 0;
-            box-shadow: 0 2px 5px rgba(2, 73, 180, 0.1);
-            border-bottom: #5a5a5a5e 1px solid;
-            transition: all 0.3s ease;
-        }
-        .game-image img:hover {
-            transform: scale(1.05);
-            transition: all 0.3s ease;
-            
-        }
-        .keyy {
-            font-size: 16px;
-            color: #fff;
-            margin: 0;
-            text-align: center;
-        }
-        .key {
-            margin: 2.5px;
-        }
-        .game-info {
-            font-size: 14px;
-            color: #818181;
-            margin: 0;
-            text-align: center;
-        }
-        .game-info p {
-            margin: 0;
-            margin-top: 5px;
-            padding: 0;
-        }
-        .copybtn:hover {
-            background-color: #4CAF50;
-            transform: scale(1.05);
-        }
-        .copy-script-div {
-            justify-content: center;
-            display: flex;
-            margin-top: 10px;
+      }
+      @media (max-width: 600px) {
+        #script-container {
+          grid-template-columns: 1fr;
+          padding: 10px;
         }
         .search-bar {
-            position: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            max-width: 600px;
-            z-index: 1000;
+          width: 90%;
+          top: 5px;
         }
-        #search-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #6e6e6e8f;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-size: 16px;
-            background: linear-gradient(to right, #31313136, #66666644);
-            z-index: 1;
-            position: fixed;
-            backdrop-filter: blur(5px);
-            box-shadow: #fff 0px 0px 5px;
-            
-        }
+
         .tab-buttons {
-            position: relative;
-            top: 20px;
-            left: 15px;
-            z-index: 1000;
+          top: 35px;
+          left: 5px;
         }
+
         .tab-button {
-            background-color: #4569a0;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            box-shadow: 0 2px 5px rgba(44, 128, 207, 0.493);
+          padding: 8px 12px;
+          font-size: 14px;
         }
-        .tab-button:hover {
-            background-color: #4CAF50;
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px #4CAF50;
+      }
+      @media (min-width: 601px) and (max-width: 900px) {
+        #script-container {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         }
-        #script-containers-holder {
-            height: 100%;
-            width: 100%;
-            position: relative;
-            padding: 5px;
-            padding-left: 0px;
+      }
+      @media (min-width: 1200px) {
+        #script-container {
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         }
+      }
+      .card {
+        background-color: rgb(20, 20, 20);
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(182, 182, 182, 0.1);
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 25px;
+        transition: all 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+      }
+      .copybtn {
+        background: rgb(20, 20, 20);
+        color: rgb(120, 120, 120);
+        border: solid;
+        border-width: 1px;
+        border-color: rgb(70, 70, 70);
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+      }
+
+      .title-and-gamename {
+        display: flex;
+        justify-content: center;
+        color: #fff;
+      }
+      .visible {
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 1s ease;
+        filter: blur(0);
+      }
+      .nonvisible {
+        transform: translateY(50px);
+        opacity: 0;
+        transition: all 1s ease;
+        filter: blur(1px);
+      }
+      .visible2 {
+        transform: translateX(10px);
+        opacity: 1;
+        transition: all 1.5s ease;
+        filter: blur(0);
+      }
+      .nonvisible2 {
+        transform: translateX(0px);
+        opacity: 0;
+        transition: all 1.5s ease;
+        filter: blur(1px);
+      }
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+        width: 100%;
+        text-align: center;
+        margin: 1px;
+        text-wrap: nowrap;
+      }
+      .game-name {
+        font-size: 16px;
+        color: #cccccc;
+        width: 100%;
+        text-align: center;
+        margin: 1px;
+        text-wrap: nowrap;
+      }
+      .game-image {
+        width: 100%;
+        height: 60%;
+        overflow: hidden;
+        position: relative;
+        border-radius: 0px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #9999995e;
+      }
+      .game-image img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        box-shadow: 0 2px 5px rgba(2, 73, 180, 0.1);
+        border-bottom: #5a5a5a5e 1px solid;
+        transition: all 0.3s ease;
+      }
+      .game-image img:hover {
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+      }
+      .keyy {
+        font-size: 16px;
+        color: #fff;
+        margin: 0;
+        text-align: center;
+      }
+      .key {
+        margin: 2.5px;
+      }
+      .game-info {
+        font-size: 14px;
+        color: #818181;
+        margin: 0;
+        text-align: center;
+      }
+      .game-info p {
+        margin: 0;
+        margin-top: 5px;
+        padding: 0;
+      }
+      .copybtn:hover {
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(53, 31, 255, 1) 0%,
+          rgba(105, 0, 217, 1) 100%
+        );
+        transform: scale(1.05);
+      }
+      .copy-script-div {
+        justify-content: center;
+        display: flex;
+        margin-top: 10px;
+      }
+      .search-bar {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-width: 600px;
+        z-index: 1000;
+      }
+      #search-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #6e6e6e8f;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        background: linear-gradient(to right, #31313136, #66666644);
+        z-index: 1;
+        position: fixed;
+        backdrop-filter: blur(5px);
+        box-shadow: #fff 0px 0px 5px;
+      }
+      .tab-buttons {
+        position: relative;
+        top: 20px;
+        left: 15px;
+        z-index: 1000;
+      }
+      .tab-button {
+        background: #020024;
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(53, 31, 255, 1) 0%,
+          rgba(105, 0, 217, 1) 100%
+        );
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        box-shadow: 0 2px 5px rgba(44, 128, 207, 0.493);
+      }
+      .tab-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px;
+      }
+      #script-containers-holder {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        padding: 5px;
+        padding-left: 0px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="tab-buttons">
-        <button class="tab-button nonvisible2" onclick="fetchscripts();">Default</button>
-        <button class="tab-button nonvisible2" onclick="fetchTrendingScripts();">Trending</button>
+      <button class="tab-button nonvisible2" onclick="fetchscripts();">
+        Default
+      </button>
+      <button class="tab-button nonvisible2" onclick="fetchTrendingScripts();">
+        Trending
+      </button>
     </div>
     <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Search for a game...">
+      <input type="text" id="search-input" placeholder="Search for a game..." />
     </div>
-<div id="script-containers-holder">
-    <div id="script-container">
-        
+    <div id="script-containers-holder">
+      <div id="script-container"></div>
     </div>
-</div>
-<script src="array and loops.js"></script>
-</body>
+    <script src="array and loops.js"></script>
+  </body>
 </html>
